@@ -36,6 +36,9 @@ const fetchFromApi = (type) => {
     if(type === 'page'){
       url= 'https://karolin-top-albums.herokuapp.com/api/albums?page=2'
     }
+    if(type==='top10'){
+      url= 'https://karolin-top-albums.herokuapp.com/api/albums/top10'
+    }
     fetch(url)
     .then(res => {
       if (res.ok) {
@@ -52,12 +55,10 @@ const fetchFromApi = (type) => {
 
   return(
     <div>
-      <h2>Collections</h2>
       <h3>https://karolin-top-albums.herokuapp.com/api/albums/?[filtertype]=[filtervalue]</h3>
       <p>This endpoint returns a collection of albums. You can use query parameters to filter the results.</p>
       <p>Try the different requests and check out the results in the console window below.</p>
       <div className="albums-wrapper">
-       
         <table><tbody className="albums-table">
           <tr>
           <th>
@@ -190,11 +191,47 @@ const fetchFromApi = (type) => {
               >Try it</button>
             </td>
           </tr>
-        </tbody></table>
-        
-            <Console content={apiResults}/>
-         
-      </div>
+        </tbody>
+      </table>
+ 
+           
     </div>
+
+    <h3>https://karolin-top-albums.herokuapp.com/api/albums/top10</h3>
+<p>This endpoint returns a collection of the top 10 albums.</p>
+<div className="albums-top10-wrapper">
+  <table>
+    <tbody className="albums-top10-table">
+    <tr>
+   
+    <th>
+      Description
+    </th>
+    <th>
+      Example
+    </th>
+    <th>
+      Try it
+    </th>
+    </tr>
+    <tr>
+      <td>
+        Returns the top 10 albums in the list. 
+      </td>
+      <td className="example">
+      https://karolin-top-albums.herokuapp.com/api/albums/top10
+      </td>
+      <td>
+        <button 
+          onClick={()=> setButtonPressed("top10")}
+        >Try it</button>
+      </td>
+    </tr>
+  </tbody></table>
+  </div>
+  <Console content={apiResults}/>
+  </div>
+
+    
   )
 }
