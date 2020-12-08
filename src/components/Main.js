@@ -21,7 +21,6 @@ export const Main = () => {
   return(
     <section className="main-wrapper">
      <h1 className="header-text">Welcome to the Top 500 albums api documentation</h1>
-     <h2 className="header-sub">Available endpoints</h2>
      <div className="button-wrapper">
        <button 
        onClick={() => setSelection("collection")}

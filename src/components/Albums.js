@@ -53,9 +53,11 @@ const fetchFromApi = (type) => {
   return(
     <div>
       <h2>Collections</h2>
+      <h3>https://karolin-top-albums.herokuapp.com/api/albums/?[filtertype]=[filtervalue]</h3>
       <p>This endpoint returns a collection of albums. You can use query parameters to filter the results.</p>
+      <p>Try the different requests and check out the results in the console window below.</p>
       <div className="albums-wrapper">
-        <h3>https://karolin-top-albums.herokuapp.com/api/albums/?[filtertype]=[filtervalue]</h3>
+       
         <table><tbody className="albums-table">
           <tr>
           <th>
@@ -82,7 +84,7 @@ const fetchFromApi = (type) => {
               Number
             </td>
             <td>
-              The exact release year of the album. Can not be used in combination with range-filters (yearTo, yearFrom)
+              The exact release year of the album. <br/>Can not be used in combination with range-filters (yearTo, yearFrom)
             </td>
             <td className="example">
             https://karolin-top-albums.herokuapp.com/api/albums?year=1967
@@ -101,7 +103,7 @@ const fetchFromApi = (type) => {
               Number
             </td>
             <td>
-              The miminum release year of the album. Will return all albums released during and after the specified year. Can be used in combination with yearTo.
+              The miminum release year of the album. <br/>Will return all albums released during and after the specified year. Can be used in combination with yearTo.
             </td>
             <td className="example">
             https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967
@@ -120,7 +122,7 @@ const fetchFromApi = (type) => {
               Number
             </td>
             <td>
-              The maximum release year of the album. Will return all albums released during and before the specified year. Can be used in combination with yearFrom.
+              The maximum release year of the album. <br/>Will return all albums released during and before the specified year. Can be used in combination with yearFrom.
             </td>
             <td className="example">
             https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967
@@ -139,7 +141,7 @@ const fetchFromApi = (type) => {
               string
             </td>
             <td>
-              Returns all albums with specified artist. Can include collaborations between multiple artists.
+              Returns all albums with specified artist.<br/> Can include collaborations between multiple artists.
             </td>
             <td className="example">
             https://karolin-top-albums.herokuapp.com/api/albums?artist=The+Beatles
@@ -158,7 +160,7 @@ const fetchFromApi = (type) => {
               string
             </td>
             <td>
-              Returns all albums with specified genre. An album can have multiple genres defined.
+              Returns all albums with specified genre. <br/>An album can have multiple genres defined.
             </td>
             <td className="example">
               https://karolin-top-albums.herokuapp.com/api/albums?genre=Funk
@@ -177,7 +179,7 @@ const fetchFromApi = (type) => {
               number
             </td>
             <td>
-              Used for pagination. The default number of items returned is the first 50 in the collection. To get next page, use the page parameter. Default is page 1.
+              Used for pagination. The default number of items returned is the first 50 in the collection. <br/>To get next page, use the page parameter. Default is page 1.
             </td>
             <td className="example">
               https://karolin-top-albums.herokuapp.com/api/albums?page=2
@@ -189,9 +191,9 @@ const fetchFromApi = (type) => {
             </td>
           </tr>
         </tbody></table>
-        <section className="console">
+        
             <Console content={apiResults}/>
-          </section>
+         
       </div>
     </div>
   )

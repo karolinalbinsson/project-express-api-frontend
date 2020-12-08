@@ -58,12 +58,11 @@ const handleButtonClick = (caller) => {
 
   }
 }
-
-
   return(
     <div>
        <h2>Single items</h2>
-       <p>This endpoint returns a single album item based on the album title or placement.</p>
+       <p>These endpoints return a single album item based on the album title or placement.</p>
+       <p>Try the different requests and check out the results in the console window below.</p>
        <div className="album-wrapper"> 
   <h3>https://karolin-top-albums.herokuapp.com/api/albums/[type]/[parameter]</h3>
           <table className="album-table"><tbody>
@@ -92,7 +91,7 @@ const handleButtonClick = (caller) => {
                 string
               </td>
               <td>
-                the album title. [STRING]
+                the album title. 
               </td>
               <td className="example">
                 https://karolin-top-albums.herokuapp.com/api/albums/title/Rubber+Soul
@@ -146,9 +145,9 @@ const handleButtonClick = (caller) => {
             </tr></tbody>
           </table>
 
-          <section className="console">
+         
             <Console content={apiResults}/>
-          </section>
+          
 
        </div>
     </div>
