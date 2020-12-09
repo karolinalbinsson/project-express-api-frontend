@@ -39,6 +39,7 @@ export const Album = () => {
     console.log("useEffect in console!");
     if(getTitle){
       fetchByTitle();
+      setGetTitle(false);
     }
   },[getTitle]);
   
@@ -46,6 +47,7 @@ export const Album = () => {
     console.log("useEffect in console!");
     if(getPlacement){
       fetchByPlacement();
+      setGetPlacement(false);
     }
   },[getPlacement]);
   

@@ -10,6 +10,7 @@ useEffect(() => {
   if(buttonPressed !== "")
   {
     fetchFromApi(buttonPressed);
+    setButtonPressed('');
   }
 },[buttonPressed]);
 
