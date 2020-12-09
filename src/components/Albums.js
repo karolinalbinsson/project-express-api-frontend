@@ -26,7 +26,7 @@ const fetchFromApi = (type) => {
       url = 'https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967'
     }
     if(type === 'toYear'){
-      url = 'https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967'
+      url = 'https://karolin-top-albums.herokuapp.com/api/albums?yearTo=1967'
     }
     if(type === 'artist'){
       url = 'https://karolin-top-albums.herokuapp.com/api/albums?artist=The+Beatles'
@@ -60,7 +60,8 @@ const fetchFromApi = (type) => {
       <p>This endpoint returns a collection of albums. You can use query parameters to filter the results.</p>
       <p>Try the different requests and check out the results in the console window below.</p>
       <div className="albums-wrapper">
-        <table><tbody className="albums-table">
+        <table>
+        <tbody className="albums-table">
           <tr>
           <th>
             Filter
@@ -127,7 +128,7 @@ const fetchFromApi = (type) => {
               The maximum release year of the album. <br/>Will return all albums released during and before the specified year. Can be used in combination with yearFrom.
             </td>
             <td className="example">
-            https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967
+            https://karolin-top-albums.herokuapp.com/api/albums?yearTo=1967
             </td>
             <td>
               <button

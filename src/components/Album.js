@@ -67,7 +67,7 @@ const handleButtonClick = (caller) => {
        <p>Try the different requests and check out the results in the console window below.</p>
        <div className="album-wrapper"> 
   <h3>https://karolin-top-albums.herokuapp.com/api/albums/[type]/[parameter]</h3>
-          <table className="album-table"><tbody>
+          <table><tbody className="album-table">
             <tr>
               <th>
                 Parameter
@@ -108,7 +108,7 @@ const handleButtonClick = (caller) => {
        </div>
 
        <div className="album-title-wrapper"> 
-        <table><tbody>
+        <table><tbody className="album-table">
             <tr>
               <th>
                 Parameter

@@ -44,7 +44,7 @@ th,
 td {
 	border-collapse: collapse;
 	/* border: 1px solid black; */
-	font-size: 14px;
+	font-size: 12px;
 	text-align: left;
 }
 
@@ -146,27 +146,63 @@ h3 {
 		white-space: nowrap;
 	}
 
-	td:nth-of-type(1):before {
+	/*New labels for the tables*/
+	.albums-table > tr > td:nth-of-type(1):before {
 		content: "Filter";
 		font-weight: bold;
 	}
-	td:nth-of-type(2):before {
+	.albums-table > tr > td:nth-of-type(2):before {
 		content: "Type";
 		font-weight: bold;
 	}
-	td:nth-of-type(3):before {
+	.albums-table > tr > td:nth-of-type(3):before {
 		content: "Description";
 		font-weight: bold;
 	}
-	td:nth-of-type(4):before {
+	.albums-table > tr > td:nth-of-type(4):before {
 		content: "Example";
 		font-weight: bold;
 	}
-	td:nth-of-type(5):before {
+	.albums-table > tr > td:nth-of-type(5):before {
 		content: "Try";
 		font-weight: bold;
 	}
 
+	/*albumstop10 table*/
+	.albums-top10-table > tr > td:nth-of-type(1):before {
+		content: "Description";
+		font-weight: bold;
+	}
+	.albums-top10-table > tr > td:nth-of-type(2):before {
+		content: "Example";
+		font-weight: bold;
+	}
+	.albums-top10-table > tr > td:nth-of-type(3):before {
+		content: "Try it";
+		font-weight: bold;
+	}
+
+	/*Single items table*/
+	.album-table > tr > td:nth-of-type(1):before {
+		content: "Parameter";
+		font-weight: bold;
+	}
+	.album-table > tr > td:nth-of-type(2):before {
+		content: "Type";
+		font-weight: bold;
+	}
+	.album-table > tr > td:nth-of-type(3):before {
+		content: "Description";
+		font-weight: bold;
+	}
+	.album-table > tr > td:nth-of-type(4):before {
+		content: "Example";
+		font-weight: bold;
+	}
+	.album-table > tr > td:nth-of-type(5):before {
+		content: "Try";
+		font-weight: bold;
+	}
 	button {
 		width: 100%;
 	}
