@@ -1,8 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export const Console = ({content}) => {
-
 
 const jsoncontent = JSON.stringify(content,undefined, 2);
 

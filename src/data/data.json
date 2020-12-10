@@ -1,0 +1,72 @@
+{
+  "albumsendpoint" : [
+   {
+       "id": 1,
+       "filter" : "year",
+       "type" : "number",
+       "description" : "The exact release year of the album. Can not be used in combination with range-filters (yearTo, yearFrom)",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?year=1967"
+   },
+
+   {
+       "id": 2,
+       "filter" : "yearFrom",
+       "type" : "number",
+       "description" : "The miminum release year of the album. Will return all albums released during and after the specified year. Can be used in combination with yearTo.",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967"
+   },
+   {
+       "id": 3,
+       "filter" : "yearTo",
+       "type" : "number",
+       "description" : "The maximum release year of the album. Will return all albums released during and before the specified year. Can be used in combination with yearFrom.",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?yearTo=1967"
+   },
+   {
+       "id": 4,
+       "filter" : "artist",
+       "type" : "string",
+       "description" : "  Returns all albums with specified artist. Can include collaborations between multiple artists.",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?artist=The+Beatles"
+   },
+   {
+       "id": 5,
+       "filter" : "genre",
+       "type" : "string",
+       "description" : "Returns all albums with specified genre. An album can have multiple genres defined.",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?genre=Funk"
+   },
+   {
+       "id": 6,
+       "filter" : "page",
+       "type" : "number",
+       "description" : "Used for pagination. The default number of items returned is the first 50 in the collection. To get next page, use the page parameter. Default is page 1.",
+       "url" : "https://karolin-top-albums.herokuapp.com/api/albums?page=2"
+   }
+ 
+  ]
+  ,  
+  "top10endpoint" : [
+      {
+           "type" : "top10",
+           "description" : "Returns the top 10 albums in the list.",
+           "url" : "https://karolin-top-albums.herokuapp.com/api/albums/top10"
+      }
+  ]
+  
+  ,
+  "albumendpoint" : [
+           {
+               "parameter" : "title",
+               "type" : "string",
+               "description" : "the album title. for spaces between words, use + or %20.",
+               "url" : "https://karolin-top-albums.herokuapp.com/api/albums/title/Rubber+Soul"
+           },
+           {
+               "parameter" : "placement",
+               "type" : "number",
+               "description" : "The placement of the album in the top-500 list.",
+               "url" : "https://karolin-top-albums.herokuapp.com/api/albums/placement/1"
+           }
+  ]
+}

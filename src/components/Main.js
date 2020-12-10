@@ -20,7 +20,7 @@ export const Main = () => {
 
   return(
     <section className="main-wrapper">
-     <h1 className="header-text">Welcome to the Top 500 albums api documentation</h1>
+     <h1 className="header-text">Welcome to the Rolling Stone Magazine Top 500 albums api documentation</h1>
      <div className="button-wrapper">
        <button 
        onClick={() => setSelection("collection")}
@@ -34,10 +34,10 @@ export const Main = () => {
        disabled={showSingle}
        >Single items </button>
      </div>
-     <section className="api-content-wrapper">
+     <>
         {showCollection && <Albums />}
         {showSingle && <Album />}
-     </section>
+     </>
     </section>
   )
 }

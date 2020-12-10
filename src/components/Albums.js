@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Console } from './Console';
+import data from '../data/data.json';
 
 export const Albums = () => {
 
 const [buttonPressed, setButtonPressed] = useState();
 const [apiResults, setApiResults] = useState([]);
+const dataAlbums = data.albumsendpoint;
+const dataTopTen = data.top10endpoint;
 
 useEffect(() => {
   if(buttonPressed !== "")
@@ -15,17 +18,16 @@ useEffect(() => {
 },[buttonPressed]);
 
 const fetchFromApi = (type) => {
-  console.log(type);
   if(type)
   {
     let url = '';
     if(type === 'year'){
       url = 'https://karolin-top-albums.herokuapp.com/api/albums?year=1967'
     }
-    if(type ==='fromYear'){
+    if(type ==='yearFrom'){
       url = 'https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967'
     }
-    if(type === 'toYear'){
+    if(type === 'yearTo'){
       url = 'https://karolin-top-albums.herokuapp.com/api/albums?yearTo=1967'
     }
     if(type === 'artist'){
@@ -55,185 +57,53 @@ const fetchFromApi = (type) => {
 }
 
   return(
-    <div>
+    <div className="content-wrapper">
+      <p>Try the different requests and check out the results in the console window below.</p>
+      
       <h3>https://karolin-top-albums.herokuapp.com/api/albums/?[filtertype]=[filtervalue]</h3>
       <p>This endpoint returns a collection of albums. You can use query parameters to filter the results.</p>
-      <p>Try the different requests and check out the results in the console window below.</p>
       <div className="albums-wrapper">
-        <table>
-        <tbody className="albums-table">
-          <tr>
-          <th>
-            Filter
-          </th>
-          <th>
-            Type
-          </th>
-          <th>
-            Description
-          </th>
-          <th>
-            Example
-          </th>
-          <th>
-            Try it
-          </th>
-          </tr>
-          <tr>
-            <td>
-              year
-            </td>
-            <td>
-              Number
-            </td>
-            <td>
-              The exact release year of the album. <br/>Can not be used in combination with range-filters (yearTo, yearFrom)
-            </td>
-            <td className="example">
-            https://karolin-top-albums.herokuapp.com/api/albums?year=1967
-            </td>
-            <td>
-              <button 
-                onClick={()=> setButtonPressed("year")}
-              >Try it</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              yearFrom
-            </td>
-            <td>
-              Number
-            </td>
-            <td>
-              The miminum release year of the album. <br/>Will return all albums released during and after the specified year. Can be used in combination with yearTo.
-            </td>
-            <td className="example">
-            https://karolin-top-albums.herokuapp.com/api/albums?yearFrom=1967
-            </td>
-            <td>
-              <button
-                onClick={()=> setButtonPressed("fromYear")}
-              >Try it</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              yearTo
-            </td>
-            <td>
-              Number
-            </td>
-            <td>
-              The maximum release year of the album. <br/>Will return all albums released during and before the specified year. Can be used in combination with yearFrom.
-            </td>
-            <td className="example">
-            https://karolin-top-albums.herokuapp.com/api/albums?yearTo=1967
-            </td>
-            <td>
-              <button
-                onClick={()=> setButtonPressed("toYear")}
-              >Try it</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              artist
-            </td>
-            <td>
-              string
-            </td>
-            <td>
-              Returns all albums with specified artist.<br/> Can include collaborations between multiple artists.
-            </td>
-            <td className="example">
-            https://karolin-top-albums.herokuapp.com/api/albums?artist=The+Beatles
-            </td>
-            <td>
-              <button
-                onClick={()=> setButtonPressed("artist")}
-              >Try it</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              genre
-            </td>
-            <td>
-              string
-            </td>
-            <td>
-              Returns all albums with specified genre. <br/>An album can have multiple genres defined.
-            </td>
-            <td className="example">
-              https://karolin-top-albums.herokuapp.com/api/albums?genre=Funk
-            </td>
-            <td>
-              <button
-                onClick={()=> setButtonPressed("genre")}
-              >Try it</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              page
-            </td>
-            <td>
-              number
-            </td>
-            <td>
-              Used for pagination. The default number of items returned is the first 50 in the collection. <br/>To get next page, use the page parameter. Default is page 1.
-            </td>
-            <td className="example">
-              https://karolin-top-albums.herokuapp.com/api/albums?page=2
-            </td>
-            <td>
-              <button
-                 onClick={()=> setButtonPressed("page")}
-              >Try it</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
- 
-           
+          <span className="grid-header">Filter</span>
+          <span className="grid-header">Type</span>
+          <span className="grid-header">Description</span>
+          <span className="grid-header">Example</span>
+          <span className="grid-header">Try it</span>
+
+             
+              {dataAlbums.map((item,index) => (
+                <React.Fragment key={index}>
+                <span className="grid-item">{item.filter}</span>
+                <span className="grid-item">{item.type}</span>
+                <span className="grid-item">{item.description}</span>
+                <span className="grid-item">{item.url}</span>
+              <span className="grid-item"><button onClick={
+                () => setButtonPressed(item.filter)
+              }>Try it</button></span>
+                </React.Fragment>
+            ))}
+        
+        </div>
+
+        <h3>https://karolin-top-albums.herokuapp.com/api/albums/top10</h3>
+        <p>This endpoint returns a collection of the top 10 albums.</p>
+        <div className="albums-top10-wrapper">
+        <span className="grid-header">Description</span>
+        <span className="grid-header">Example</span>
+        <span className="grid-header">Try it</span>
+        {
+          dataTopTen.map((item,index) => (
+            <React.Fragment key={index}>
+            <span className="grid-item">{item.description}</span>
+            <span className="grid-item">{item.url}</span>
+            <span className="grid-item"><button onClick={
+                () => setButtonPressed(item.type)
+              }>Try it</button></span>
+            </React.Fragment>
+          ))
+        }
+        </div>
+        <Console content={apiResults}/>
     </div>
-
-    <h3>https://karolin-top-albums.herokuapp.com/api/albums/top10</h3>
-<p>This endpoint returns a collection of the top 10 albums.</p>
-<div className="albums-top10-wrapper">
-  <table>
-    <tbody className="albums-top10-table">
-    <tr>
-   
-    <th>
-      Description
-    </th>
-    <th>
-      Example
-    </th>
-    <th>
-      Try it
-    </th>
-    </tr>
-    <tr>
-      <td>
-        Returns the top 10 albums in the list. 
-      </td>
-      <td className="example">
-      https://karolin-top-albums.herokuapp.com/api/albums/top10
-      </td>
-      <td>
-        <button 
-          onClick={()=> setButtonPressed("top10")}
-        >Try it</button>
-      </td>
-    </tr>
-  </tbody></table>
-  </div>
-  <Console content={apiResults}/>
-  </div>
-
-    
+ 
   )
 }

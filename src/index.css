@@ -5,6 +5,11 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	padding: 15px;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 code,
@@ -19,10 +24,42 @@ pre {
 	align-items: center;
 }
 
-table,
-.console {
-	width: 100%;
-	max-width: 1200px;
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 90vw;
+}
+
+.albums-wrapper,
+.album-wrapper {
+	display: grid;
+	/* grid-template-columns: repeat(5, 1fr); */
+	grid-template-columns: 0.5fr 0.5fr 2fr 2fr 0.5fr;
+	max-width: 90vw;
+
+	/* justify-items: start; */
+	/* align-items: end; */
+}
+
+.albums-wrapper > .grid-item,
+.album-wrapper > .grid-item,
+.albums-top10-wrapper > .grid-item {
+	padding: 15px;
+	border-bottom: 1px solid rgb(195, 195, 195);
+	background-color: #f5f5f5;
+	font-size: 14px;
+}
+
+.grid-header {
+	/* font-weight: bold; */
+	padding: 15px;
+	background-color: #120c0c;
+	color: white;
+}
+
+.albums-top10-wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
 .console {
@@ -35,39 +72,13 @@ table,
 	overflow: auto;
 	font-size: 12px;
 	cursor: text;
-	color: #90ffa0;
+	color: #d2b8ff;
 	padding-left: 20px;
+	width: 100%;
+	max-width: 1200px;
+	align-self: center;
 }
 
-table,
-th,
-td {
-	border-collapse: collapse;
-	/* border: 1px solid black; */
-	font-size: 12px;
-	text-align: left;
-}
-
-th {
-	height: 50px;
-	border-top: 1px solid #ddd;
-	background-color: #323030;
-	color: white;
-}
-
-th,
-td {
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-}
-
-th {
-	vertical-align: center;
-}
-
-td {
-	vertical-align: baseline;
-}
 button {
 	width: 70px;
 	height: 30px;
@@ -88,13 +99,11 @@ button:disabled {
 	color: white;
 }
 
-tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-.example,
 h3 {
 	font-family: "Roboto Mono", Courier, monospace;
+	overflow-wrap: break-word;
+	margin-top: 25px;
+	margin-bottom: 5px;
 }
 
 .example {
@@ -106,104 +115,57 @@ h3 {
 	height: 82px;
 }
 
+.button-wrapper {
+	flex-direction: row;
+	margin-bottom: 30px;
+}
+
 @media only screen and (max-width: 760px) {
-	/* Force table to not be like tables anymore */
-	table,
-	thead,
-	tbody,
-	th,
-	td,
-	tr {
-		display: block;
-		font-family: "Roboto Mono", Courier, monospace;
+	button {
+		width: 100%;
 	}
 
-	/* Hide table headers (but not display: none;, for accessibility) */
-	th {
+	/*Hide columns*/
+	.albums-wrapper > span:nth-child(5n + 3),
+	.album-wrapper > span:nth-child(5n + 3) {
 		display: none;
 	}
 
-	tr {
-		border: 1px solid #ccc;
+	.albums-wrapper > span:nth-child(5n + 2),
+	.album-wrapper > span:nth-child(5n + 2) {
+		display: none;
 	}
 
-	td {
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee;
-		position: relative;
-		padding-left: 50%;
+	.albums-wrapper > span:nth-child(5n + 1),
+	.album-wrapper > span:nth-child(5n + 1) {
+		display: none;
 	}
 
-	td:before {
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%;
-		padding-right: 10px;
-		white-space: nowrap;
+	.albums-top10-wrapper > span:nth-child(3n + 1) {
+		display: none;
 	}
 
-	/*New labels for the tables*/
-	.albums-table > tr > td:nth-of-type(1):before {
-		content: "Filter";
-		font-weight: bold;
-	}
-	.albums-table > tr > td:nth-of-type(2):before {
-		content: "Type";
-		font-weight: bold;
-	}
-	.albums-table > tr > td:nth-of-type(3):before {
-		content: "Description";
-		font-weight: bold;
-	}
-	.albums-table > tr > td:nth-of-type(4):before {
-		content: "Example";
-		font-weight: bold;
-	}
-	.albums-table > tr > td:nth-of-type(5):before {
-		content: "Try";
-		font-weight: bold;
+	.albums-wrapper,
+	.album-wrapper {
+		display: grid;
+		/* grid-template-columns: repeat(5, 1fr); */
+		grid-template-columns: 1fr;
+
+		/* justify-items: start; */
+		/* align-items: end; */
 	}
 
-	/*albumstop10 table*/
-	.albums-top10-table > tr > td:nth-of-type(1):before {
-		content: "Description";
-		font-weight: bold;
-	}
-	.albums-top10-table > tr > td:nth-of-type(2):before {
-		content: "Example";
-		font-weight: bold;
-	}
-	.albums-top10-table > tr > td:nth-of-type(3):before {
-		content: "Try it";
-		font-weight: bold;
+	.albums-top10-wrapper {
+		grid-template-columns: repeat(1, 1fr);
 	}
 
-	/*Single items table*/
-	.album-table > tr > td:nth-of-type(1):before {
-		content: "Parameter";
-		font-weight: bold;
+	.grid-item {
+		font-size: 14px;
 	}
-	.album-table > tr > td:nth-of-type(2):before {
-		content: "Type";
-		font-weight: bold;
-	}
-	.album-table > tr > td:nth-of-type(3):before {
-		content: "Description";
-		font-weight: bold;
-	}
-	.album-table > tr > td:nth-of-type(4):before {
-		content: "Example";
-		font-weight: bold;
-	}
-	.album-table > tr > td:nth-of-type(5):before {
-		content: "Try";
-		font-weight: bold;
-	}
-	button {
-		width: 100%;
+
+	.button-wrapper {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
 	}
 }

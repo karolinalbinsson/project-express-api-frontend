@@ -1,11 +1,12 @@
 import React, {useState,useEffect} from 'react';
 import { Console } from './Console';
+import data from '../data/data.json';
 
 export const Album = () => {
 
-  const[getTitle,setGetTitle] = useState(false);
-  const[getPlacement, setGetPlacement] = useState(false);
+  const[getFromAPI,setGetFromAPI] = useState();
   const[apiResults,setApiResults] = useState([]);
+  const dataAlbum = data.albumendpoint;
 
   const fetchByTitle = () =>{
     fetch(`https://karolin-top-albums.herokuapp.com/api/albums/title/Rubber+Soul`)
@@ -36,122 +37,45 @@ export const Album = () => {
   }
   
   useEffect(() => {
-    console.log("useEffect in console!");
-    if(getTitle){
+    if(getFromAPI ==='title'){
       fetchByTitle();
-      setGetTitle(false);
     }
-  },[getTitle]);
-  
-  useEffect(() => {
-    console.log("useEffect in console!");
-    if(getPlacement){
+    if(getFromAPI ==='placement'){
       fetchByPlacement();
-      setGetPlacement(false);
     }
-  },[getPlacement]);
+  },[getFromAPI]);
   
-const handleButtonClick = (caller) => {
-  if(caller === 'title'){
-    
-  }
-
-  if(caller==='placement'){
-
-  }
-}
   return(
-    <div>
+    <div className="content-wrapper">
        <h2>Single items</h2>
        <p>These endpoints return a single album item based on the album title or placement.</p>
        <p>Try the different requests and check out the results in the console window below.</p>
+       
+       <h3>https://karolin-top-albums.herokuapp.com/api/albums/[type]/[parameter]</h3>
        <div className="album-wrapper"> 
-  <h3>https://karolin-top-albums.herokuapp.com/api/albums/[type]/[parameter]</h3>
-          <table><tbody className="album-table">
-            <tr>
-              <th>
-                Parameter
-              </th>
-              <th>
-                Type
-              </th>
-              <th>
-                Description
-              </th>
-              <th>
-                Example
-              </th>
-              <th>
-                Try it
-              </th>
-            </tr>
-            <tr>
-              <td>
-                title
-              </td>
-              <td>
-                string
-              </td>
-              <td>
-                the album title. 
-              </td>
-              <td className="example">
-                https://karolin-top-albums.herokuapp.com/api/albums/title/Rubber+Soul
-              </td>
-              <td>
-                <button
-                onClick={() => setGetTitle(true)}
-                >Try it!</button>
-              </td>
-            </tr></tbody>
-          </table>
+        <span className="grid-header">Parameter</span>
+        <span className="grid-header">Type</span>
+        <span className="grid-header">Description</span>
+        <span className="grid-header">Example</span>
+        <span className="grid-header">Try it</span>
+        {
+          dataAlbum.map((item,index) => (
+              <React.Fragment key={index}>
+                <span className="grid-item">{item.parameter}</span>
+                <span className="grid-item">{item.type}</span>
+                <span className="grid-item">{item.description}</span>
+                <span className="grid-item">{item.url}</span>
+                <span className="grid-item">
+                  <button onClick={() => setGetFromAPI(item.parameter)
+                    
+                  }>
+                 Try it</button></span>
+              </React.Fragment>
+          ))
+        }
        </div>
 
-       <div className="album-title-wrapper"> 
-        <table><tbody className="album-table">
-            <tr>
-              <th>
-                Parameter
-              </th>
-              <th>
-                Type
-              </th>
-              <th>
-                Description
-              </th>
-              <th>
-                Example
-              </th>
-              <th>
-                Try it
-              </th>
-            </tr>
-            <tr>
-              <td>
-                placement
-              </td>
-              <td>
-                Number
-              </td>
-              <td>
-               The placement in the top-500 list.
-              </td>
-              <td className="example">
-              https://karolin-top-albums.herokuapp.com/api/albums/placement/1
-              </td>
-              <td>
-                <button
-                onClick={() => setGetPlacement(true)}
-                >Try it!</button>
-              </td>
-            </tr></tbody>
-          </table>
-
-         
-            <Console content={apiResults}/>
-          
-
-       </div>
+       <Console content={apiResults}/>
     </div>
   )
 }
